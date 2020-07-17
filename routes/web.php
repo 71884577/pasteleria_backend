@@ -31,10 +31,16 @@ $router->group(['prefix' => 'api/v1/'], function ($router) {
     $router->get('produccion','ProduccionController@all');
     $router->post('produccion', 'ProduccionController@store');
 
-	$router->get('insumos','InsumosController@all');
+    $router->get('insumos','InsumosController@all');
     $router->post('insumos','InsumosController@store');
     $router->delete('insumos/{id}', 'InsumosController@remove');
     $router->put('insumos/{id}', 'InsumosController@update');
+
+    $router->get('stock','StockController@all');
+    $router->get('stock-reporte','StockController@reporte');
+    $router->post('stock','StockController@store');
+
+
 });
 
 

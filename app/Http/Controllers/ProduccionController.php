@@ -3,6 +3,7 @@
 use App\Insumo;
 use App\Produccion;
 use App\Receta;
+use App\Stock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,13 @@ class ProduccionController extends Controller
             $produccion->id_user = $request->user()->id;
 
             if ($produccion->save()) {
+
+                $stock = new Stock();
+                $stock->nombreInsumos = $produccion->nombreInsumo;
+                $stock->salidaInsumos = $produccion->peso;
+                $stock->ingresoInsumos = 0;
+                $stock->save();
+
                 return response()->json([
                     'status' => 'success',
                     'result' => []
